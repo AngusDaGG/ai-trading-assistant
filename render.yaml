@@ -3,11 +3,11 @@ services:
     name: ai-trading-assistant
     env: python
     plan: free
-    # 先升级打包相关工具，再安装依赖
     buildCommand: |
+      # 升级 pip、setuptools、wheel
       pip install --upgrade pip setuptools wheel
-      pip install -r requirements.txt
-    # 指向 backend/main.py 中的 FastAPI 实例
+      # 强制跳过 PEP 517 机制，直接安装 requirements.txt
+      pip install --no-use-pep517 -r requirements.txt
     startCommand: uvicorn backend.main:app --host 0.0.0.0 --port 10000
     envVars:
       - key: PORT
