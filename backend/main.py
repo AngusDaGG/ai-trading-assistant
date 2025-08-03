@@ -4,8 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pathlib import Path
 import base64, io
-from fetch_okx import fetch_kline
-from draw_chart import render_chart
+from backend.fetch_okx import fetch_kline
+from backend.draw_chart import render_chart
+
 
 app = FastAPI(title="AI Trading Assistant - Phase1")
 
