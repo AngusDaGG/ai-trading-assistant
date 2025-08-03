@@ -4,3 +4,4 @@ pandas
 requests
 mplfinance
 pandas-ta
+setuptools
