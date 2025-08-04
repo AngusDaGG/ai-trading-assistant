@@ -1,13 +1,17 @@
 services:
   - type: web
     name: ai-trading-assistant
-    env: python
-    pythonVersion: "3.11"
+    runtime: python          # ← 用 runtime 而不是 env
+    pythonVersion: "3.11"    # ← 放在 runtime 之後
     plan: free
+
     buildCommand: |
       pip install --upgrade pip setuptools wheel
       pip install --no-use-pep517 -r requirements.txt
+
     startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+
     envVars:
       - key: PORT
         value: 10000
+
