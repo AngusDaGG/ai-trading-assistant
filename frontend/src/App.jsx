@@ -4,7 +4,7 @@ export default function App(){
   const [symbol,setSymbol]=useState('SOL-USDT');
   const [img,setImg]=useState(null);
   const go=async()=>{
-    const res=await axios.get('/chart',{params:{symbol,bar:'1H',limit:200}});
+    const res=await axios.get('https://ai-trading-assistant-5vws.onrender.com',{params:{symbol,bar:'1H',limit:200}});
     setImg(res.data.image);
   };
   return(
