@@ -1,4 +1,9 @@
-def render_chart(df, title="K-line"):
+import io, base64
+import pandas as pd
+import mplfinance as mpf
+import pandas_ta as ta   # ★ 需要這行
+
+def render_chart(df: pd.DataFrame, title="K-line"):
     df = df.set_index("ts")
 
     # 技術指標
@@ -13,9 +18,9 @@ def render_chart(df, title="K-line"):
     ]
 
     buf = io.BytesIO()
-    # ★ 一定要把 volume 欄也帶進來
+    # 帶 volume 欄一起繪圖
     mpf.plot(
-        df[["open", "high", "low", "close", "volume"]],  # ← 這裡多加 "volume"
+        df[["open", "high", "low", "close", "volume"]],
         type="candle",
         style="yahoo",
         volume=True,
@@ -25,3 +30,4 @@ def render_chart(df, title="K-line"):
     )
     buf.seek(0)
     return "data:image/png;base64," + base64.b64encode(buf.read()).decode()
+
