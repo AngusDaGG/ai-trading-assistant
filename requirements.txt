@@ -1,8 +1,0 @@
-numpy<1.24
-fastapi
-uvicorn[standard]
-pandas
-requests
-mplfinance
-pandas-ta
-setuptools
